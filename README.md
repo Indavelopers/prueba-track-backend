@@ -52,7 +52,7 @@ Recursos:
 - Archivo JSON con datos de ejemplo a cargar en la aplicación, e instrucciones para validar sus datos.
 - Cuentas de servicio con roles pre-asignados para cada microservicio:
   - servicio-be: `roles/datastore.user`, `roles/logging.logWriter`
-  - servicio-fe: `roles/datastore.viewer`
+  - servicio-fe: `roles/datastore.viewer`, `roles/logging.logWriter`
 - Bucket de Cloud Storage para recibir dichos archivos JSON.
 - Tema de Cloud Pub/Sub para recibir notificaciones de nuevos objetos en el bucket de Cloud Storage.
 - Base de datos `(default)` de Cloud Firestore donde almacenar y consultar los datos del objeto JSON.
