@@ -35,7 +35,7 @@ Instrucciones generales:
    4. Usa la base de datos de Cloud Firestore proporcionada para almacenar y consultar los datos del objeto JSON.
 6. Despliegua los servicios:
    1. **servicio-be** como una función de Java de Cloud Run Functions.
-   2. **servicio-fe** como un servicio de Cloud Run, usando el Dockerfile proporcionado.
+   2. **servicio-fe** como un servicio de Cloud Run.
    3. Usa las cuentas de servicio proporcionadas para cada microservicio.
 7. Finalmente, testea los microservicios en un end-to-end y comprueba sus logs en Cloud Logging.
 
