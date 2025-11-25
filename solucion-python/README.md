@@ -6,6 +6,8 @@ Prueba track ingeniero de backend
 
 Instrucciones generales:
 
+- Lee con detenimiento las instrucciones.
+- Intenta verbalizar tus pasos, para saber qué tienes en mente y qué quieres hacer.
 - El ejercicio está pensado para seguir una progresión general, intenta completar todos los pasos que puedas en el tiempo disponible.
 - Si no eres capaz de completar del todo un apartado, intenta continuar con los siguientes pasos.
 - Utiliza tu cuenta de usuario de Google corporativa y el proyecto de Google Cloud asignado.
@@ -15,16 +17,15 @@ Instrucciones generales:
 
 ![Esquema](diagram.svg)
 
-1. Lee con detenimiento las instrucciones.
-2. Prepara tu entorno de trabajo:
+1. Prepara tu entorno de trabajo:
    1. Clona este repositorio en local: `git clone https://github.com/Indavelopers/prueba-track-backend.git`
    2. Comprueba que Cloud SDK está instalado y disponible, e inicia sesión con tu cuenta de usuario de Google si es necesario.
    3. Instala las librerías de cliente necesarias para utilizar Cloud Storage y Cloud Firestore.
-3. Durante el desarrollo local, testea cada microservicio, y tras su despliegue, comprueba sus logs en Cloud Logging.
-4. Microservicios:
+2. Durante el desarrollo local, testea cada microservicio, y tras su despliegue, comprueba sus logs en Cloud Logging.
+3. Microservicios:
    1. **servicio-be**: Función basada en eventos que es invocada con cada nuevo objeto JSON subido al bucket de Cloud Storage, a través del tema de Cloud Pub/Sub. Esta función extrae datos del archivo JSON, los valida y los carga en Cloud Firestore, según el esquema indicado, loguea `successful` o eleva una excepción si ha habido algún error.
-   2. **servicio-fe**: API restful HTTP desarrollada en Java con Vert.x, en `GET /catalogue` devuelve un listado de productos recogido de Cloud Firestore, o eleva una excepción si ha habido algún error.
-5. Configura la arquitectura:
+   2. **servicio-fe**: API restful HTTP desarrollada en Java con Vert.x, en `GET /catalogue` devuelve un listado de productos recogido de Cloud Firestore en HTML, o eleva una excepción si ha habido algún error.
+4. Configura la arquitectura:
    1. Usa el bucket de Cloud Storage proporcionado para subir archivos JSON como el ejemplo `productos-ejemplo.json`.
    2. Edita el tema de Cloud Pub/Sub proporcionado para recibir las notificaciones de nuevo objeto en dicho bucket:
       1. Configúralo como un tema de importación de Cloud Storage, habilitando la transferencia desde Cloud Storage a Cloud Pub/Sub, y asignando los permisos necesarios ([docs](https://docs.cloud.google.com/pubsub/docs/create-cloud-storage-import-topic)).
@@ -33,11 +34,11 @@ Instrucciones generales:
       1. Usa la cuenta de servicio por defecto de Compute Engine para el trigger de EventArc.
       2. El mensaje de Cloud Pub/Sub contendrá simplemente el contenido del objeto JSON subido al bucket de Cloud Storage, en un mensaje en formato _Cloud Events_, disponible en _message.data_, codificado en base64.
    4. Usa la base de datos de Cloud Firestore proporcionada para almacenar y consultar los datos del objeto JSON.
-6. Despliegua los servicios:
+5. Despliegua los servicios:
    1. **servicio-be** como una función de Java de Cloud Run Functions.
    2. **servicio-fe** como un servicio de Cloud Run.
    3. Usa las cuentas de servicio proporcionadas para cada microservicio.
-7. Finalmente, testea los microservicios en un end-to-end y comprueba sus logs en Cloud Logging.
+6. Finalmente, testea los microservicios en un end-to-end y comprueba sus logs en Cloud Logging.
 
 ## Dispones de
 
@@ -71,7 +72,6 @@ Recursos:
 ## APIs utilizadas
 
 - run.googleapis.com
-- cloudfunctions.googleapis.com
 - cloudbuild.googleapis.com
 - artifactregistry.googleapis.com
 - eventarc.googleapis.com
