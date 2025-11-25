@@ -17,7 +17,7 @@ Instrucciones generales:
 
 1. Lee con detenimiento las instrucciones.
 2. Prepara tu entorno de trabajo:
-   1. Clona este repositorio en local.
+   1. Clona este repositorio en local: `git clone https://github.com/Indavelopers/prueba-track-backend.git`
    2. Comprueba que Cloud SDK está instalado y disponible, e inicia sesión con tu cuenta de usuario de Google si es necesario.
    3. Instala las librerías de cliente necesarias para utilizar Cloud Storage y Cloud Firestore.
 3. Durante el desarrollo local, testea cada microservicio, y tras su despliegue, comprueba sus logs en Cloud Logging.
