@@ -26,9 +26,9 @@ Instrucciones generales:
    2. **servicio-fe**: API restful HTTP desarrollada en Java con Vert.x, en `GET /catalogue` devuelve un listado de productos recogido de Cloud Firestore, o eleva una excepción si ha habido algún error.
 5. Configura la arquitectura:
    1. Usa el bucket de Cloud Storage proporcionado para subir archivos JSON como el ejemplo `productos-ejemplo.json`.
-   2. Edita el tema de Cloud Pub/Sub proporcionado para recibir las notificaciones de nuevo objeto en dicho bucket:
-      1. Configúralo como un tema de importación de Cloud Storage, habilitando la transferencia desde Cloud Storage a Cloud Pub/Sub, y asignando los permisos necesarios ([docs](https://docs.cloud.google.com/pubsub/docs/create-cloud-storage-import-topic)).
-      2. Teniendo en cuenta el esquema indicado en `productos-ejemplo.json`, el microservicio `servicio-be` recibe múltiples productos a almacenar en un único archivo, por lo que no debemos dividir el objeto en diferentes mensajes de notificación. Por tanto, como carácter delimitador para dividir el objeto en varios mensajes, utiliza un carácter no incluido en el archivo como `|`.
+   2. Usa el tema de Cloud Pub/Sub proporcionado para recibir las notificaciones de nuevo objeto en dicho bucket:
+      1. Úsalo como un tema de importación de Cloud Storage, configurada la transferencia desde Cloud Storage a Cloud Pub/Sub y los permisos necesarios.
+      2. Teniendo en cuenta el esquema indicado en `productos-ejemplo.json`, el microservicio `servicio-be` recibe múltiples productos a almacenar en un único archivo, por lo que no debemos dividir el objeto en diferentes mensajes de notificación. Por tanto, como carácter delimitador para dividir el objeto en varios mensajes, usamos un carácter no incluido en el archivo como `|`.
    3. Crea un trigger de Cloud Run Functions para invocar el microservicio **servicio-be** suscrito a dicho tema de Cloud Pub/Sub:
       1. Usa la cuenta de servicio por defecto de Compute Engine para el trigger de EventArc.
       2. El mensaje de Cloud Pub/Sub contendrá simplemente el contenido del objeto JSON subido al bucket de Cloud Storage, en un mensaje en formato _Cloud Events_, disponible en _message.data_, codificado en base64.
