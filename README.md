@@ -23,6 +23,7 @@ Instrucciones generales:
 3. Durante el desarrollo local, testea cada microservicio, y tras su despliegue, comprueba sus logs en Cloud Logging.
 4. Microservicios:
    1. **servicio-be**: Función basada en eventos que es invocada con cada nuevo objeto JSON subido al bucket de Cloud Storage, a través del tema de Cloud Pub/Sub. Esta función extrae datos del archivo JSON, los valida y los carga en Cloud Firestore, según el esquema indicado, loguea `successful` o eleva una excepción si ha habido algún error.
+      1. Puedes crear la imagen de contenedor con Cloud Build: [docs](https://docs.cloud.google.com/build/docs/building/build-containers#use-dockerfile)
    2. **servicio-fe**: API restful HTTP desarrollada en Java con Vert.x, en `GET /catalogue` devuelve un listado de productos recogido de Cloud Firestore, o eleva una excepción si ha habido algún error.
 5. Configura la arquitectura:
    1. Usa el bucket de Cloud Storage proporcionado para subir archivos JSON como el ejemplo `productos-ejemplo.json`.
