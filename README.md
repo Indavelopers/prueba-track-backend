@@ -56,7 +56,7 @@ Recursos:
 - Bucket de Cloud Storage para recibir dichos archivos JSON.
 - Tema de Cloud Pub/Sub para recibir notificaciones de nuevos objetos en el bucket de Cloud Storage.
 - Base de datos `(default)` de Cloud Firestore donde almacenar y consultar los datos del objeto JSON.
-- Repositorio de contenedores formato Docker en Artifact Registry `servicio-fe`.
+- Repositorio de contenedores formato Docker en Artifact Registry `servicio-fe` en `europe-southwest1`.
 
 ## Evaluación
 
