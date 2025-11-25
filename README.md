@@ -71,6 +71,7 @@ Recursos:
 ## APIs utilizadas
 
 - run.googleapis.com
+- cloudfunctions.googleapis.com
 - cloudbuild.googleapis.com
 - artifactregistry.googleapis.com
 - eventarc.googleapis.com
