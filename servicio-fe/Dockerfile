@@ -1,21 +1,13 @@
-# Use an official Maven image to build the application
-FROM maven:3.8-openjdk-11 AS build
-
-# Set the working directory
+# Use a Maven image to build the application
+FROM maven:3.8.5-openjdk-11 AS build
 WORKDIR /app
-
-# Copy the pom.xml and download dependencies
 COPY pom.xml .
-RUN mvn dependency:go-offline
+COPY src ./src
+RUN mvn clean package
 
-# Copy the source code
-COPY MainVerticle.java ./src/main/java/com/example/MainVerticle.java
-
-# Compile the application
-RUN mvn compile
-
-# Expose the port the application runs on
+# Use a lightweight Java runtime image for the final image
+FROM eclipse-temurin:11-jre-focal
+WORKDIR /app
+COPY --from=build /app/target/servicio-fe-1.0.0-SNAPSHOT-fat.jar .
 EXPOSE 8080
-
-# Command to run the application
-CMD ["mvn", "exec:java"]
+CMD ["java", "-jar", "servicio-fe-1.0.0-SNAPSHOT-fat.jar"]
